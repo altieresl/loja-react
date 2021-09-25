@@ -3,7 +3,7 @@ module.exports = {
     es6: true
   },
   parser: 'babel-eslint',
-  extends: ['airbnb', 'prettier'],
+  extends: [ 'prettier', 'eslint:recommended'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -22,11 +22,14 @@ module.exports = {
     'global-require': 0,
     'import/prefer-default-export': 'off',
     'import/order': 'off',
+    'no-unused-vars': 'off',
+    'no-undef': 'warn',
+    'no-plusplus': 'off',
     'no-use-before-define': [
-      'error',
+      'warn',
       { functions: false, classes: false, variables: false }
     ],
-    'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    'prettier/prettier': ['warn', { endOfLine: 'auto' }],
     'react/jsx-filename-extension': [
       'warn',
       {
