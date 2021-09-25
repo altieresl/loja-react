@@ -3,7 +3,7 @@ module.exports = {
     es6: true
   },
   parser: 'babel-eslint',
-  extends: [ 'prettier', 'eslint:recommended'],
+  extends: ['prettier', 'eslint:recommended'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -33,7 +33,7 @@ module.exports = {
     'react/jsx-filename-extension': [
       'warn',
       {
-        extensions: ['.jsx', '.js']
+        extensions: ['.jsx', '.js', '.tsx', '.ts']
       }
     ],
     'react/state-in-constructor': 'off',
@@ -44,5 +44,13 @@ module.exports = {
     'no-console': 'off',
     camelcase: 'off',
     'no-nested-ternary': 'off'
-  }
+  },
+  overrides: [
+    {
+      files: ['*.ts'],
+      rules: {
+        'no-undef': 'off'
+      }
+    }
+  ]
 };

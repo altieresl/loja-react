@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  itensCarrinho: []
+  itensCarrinho: Array()
 };
 
 export const carrinhoSlice = createSlice({
@@ -15,13 +15,14 @@ export const carrinhoSlice = createSlice({
       const { id } = payload;
 
       state.itensCarrinho = state.itensCarrinho.filter(
-        (item) => item.id !== id
+        (item: { id: any }) => item.id !== id
       );
     }
   }
 });
 
 export const { addItemCarrinho, removeItemCarrinho } = carrinhoSlice.actions;
-export const { getItensCarrinho } = (state) =>
-  state.itensCarrinho.itensCarrinho;
+export const getItensCarrinho = (state: {
+  itensCarrinho: { itensCarrinho: any };
+}) => state.itensCarrinho.itensCarrinho;
 export default carrinhoSlice.reducer;
