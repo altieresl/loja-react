@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addItemCarrinho,
-  removeItemCarrinho
+  removeItemCarrinho,
+  limparItensCarrinho
 } from '../../redux/carrinho/carrinhoSlice';
 import { RootState } from '../../redux/store';
 import { getProdutos } from '../../services/api';
 import { ContainerProdutos, Produto } from './style';
 import { Header } from '../../components/Header';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const itensCarrinho = useSelector(
@@ -23,18 +26,18 @@ function App() {
   }, []);
 
   const adicionarProduto = (produto: any) => {
-    let idProduto = produto.id;
-    let posicaoProdutoAdicionado = itensCarrinho.findIndex((element: any) => {
-      return element.id == idProduto;
-    });
-    if (posicaoProdutoAdicionado === -1) {
-      dispatch(addItemCarrinho({ ...produto, quantity: 1 }));
+    try {
+      dispatch(addItemCarrinho(produto));
+    } catch (error) {
+      console.log('adicionarProduto=> ', error);
+      if (typeof error === 'string') toast.error(error);
     }
   };
 
   return (
     <>
       <Header />
+      <ToastContainer />
       <ContainerProdutos className="d-flex flex-row flex-wrap">
         {produtos.map((produto: any, index: number) => {
           return (
