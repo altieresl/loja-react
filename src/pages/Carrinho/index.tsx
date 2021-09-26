@@ -11,8 +11,19 @@ function Carrinho() {
   const itensCarrinho = useSelector(
     (state: RootState) => state.carrinho.itensCarrinho
   );
-  const [valorTotal, setValorTotal] = useState(0);
+  const [valorTotal, setValorTotal] = useState<number>(0);
   const dispatch = useDispatch();
+
+  interface Produto {
+    id: string;
+    createdAt: string;
+    name: string;
+    price: number;
+    image: string;
+    stock: number;
+    quantity: number;
+  }
+
   useEffect(() => {
     let valorTotal = 0;
     itensCarrinho.forEach((item) => {
@@ -29,7 +40,7 @@ function Carrinho() {
         {itensCarrinho.length == 0 && (
           <h3 className="p-2">Seu carrinho está vazio.</h3>
         )}
-        {itensCarrinho.map((produto: any, index: number) => {
+        {itensCarrinho.map((produto: Produto, index: number) => {
           return <ItemCarrinho produto={produto} key={produto.id} />;
         })}
         <div className="text-right">

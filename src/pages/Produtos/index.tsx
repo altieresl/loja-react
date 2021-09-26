@@ -16,16 +16,27 @@ function Produtos() {
   const itensCarrinho = useSelector(
     (state: RootState) => state.carrinho.itensCarrinho
   );
+
+  interface Produto {
+    id: string;
+    createdAt: string;
+    name: string;
+    price: number;
+    image: string;
+    stock: number;
+    quantity: number;
+  }
+
   const dispatch = useDispatch();
-  const [produtos, setProdutos] = useState([]);
+  const [produtos, setProdutos] = useState<Produto[]>([]);
 
   useEffect(() => {
     getProdutos()
       .then((res: any) => res.json())
-      .then((json: any) => setProdutos(json));
+      .then((json: Produto[]) => setProdutos(json));
   }, []);
 
-  const adicionarProduto = (produto: any) => {
+  const adicionarProduto = (produto: Produto) => {
     try {
       dispatch(addItemCarrinho(produto));
       toast.success('Produto adicionado com sucesso!');
@@ -40,7 +51,7 @@ function Produtos() {
       <Header />
       <ToastContainer />
       <ContainerProdutos className="d-flex flex-row flex-wrap">
-        {produtos.map((produto: any, index: number) => {
+        {produtos.map((produto: Produto, index: number) => {
           return (
             <Produto key={produto.id} className="p-2">
               <img src={produto.image} width="100%" />
