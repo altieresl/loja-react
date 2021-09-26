@@ -4,13 +4,23 @@ const initialState = {
   itensCarrinho: Array()
 };
 
+interface Produto {
+  id: string;
+  createdAt: string;
+  name: string;
+  price: number;
+  image: string;
+  stock: number;
+  quantity: number;
+}
+
 export const carrinhoSlice = createSlice({
   name: 'itensCarrinho',
   initialState,
   reducers: {
     addItemCarrinho: (state, { payload }) => {
       let posicaoProdutoAdicionado = state.itensCarrinho.findIndex(
-        (element: any) => {
+        (element: Produto) => {
           return element.id == payload.id;
         }
       );
@@ -46,10 +56,10 @@ export const carrinhoSlice = createSlice({
       const { id } = payload;
 
       state.itensCarrinho = state.itensCarrinho.filter(
-        (item: { id: any }) => item.id !== id
+        (item: { id: number }) => item.id !== id
       );
     },
-    limparItensCarrinho: (state) => {
+    limparItensCarrinho: (state: any) => {
       state.itensCarrinho = [];
     }
   }
@@ -61,7 +71,4 @@ export const {
   limparItensCarrinho,
   alteraItemCarrinho
 } = carrinhoSlice.actions;
-export const getItensCarrinho = (state: {
-  itensCarrinho: { itensCarrinho: any };
-}) => state.itensCarrinho.itensCarrinho;
 export default carrinhoSlice.reducer;
