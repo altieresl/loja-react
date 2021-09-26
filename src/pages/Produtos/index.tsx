@@ -12,7 +12,7 @@ import { Header } from '../../components/Header';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function App() {
+function Produtos() {
   const itensCarrinho = useSelector(
     (state: RootState) => state.carrinho.itensCarrinho
   );
@@ -28,6 +28,7 @@ function App() {
   const adicionarProduto = (produto: any) => {
     try {
       dispatch(addItemCarrinho(produto));
+      toast.success('Produto adicionado com sucesso!');
     } catch (error) {
       console.log('adicionarProduto=> ', error);
       if (typeof error === 'string') toast.error(error);
@@ -60,4 +61,4 @@ function App() {
   );
 }
 
-export default App;
+export default Produtos;
