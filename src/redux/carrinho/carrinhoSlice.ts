@@ -28,6 +28,20 @@ export const carrinhoSlice = createSlice({
         }
       }
     },
+    alteraItemCarrinho: (state: any, { payload }) => {
+      let posicaoProduto = state.itensCarrinho.findIndex((element: any) => {
+        return element.id == payload.id;
+      });
+      // Se o produto foi encontrado, altera o registro
+      if (posicaoProduto !== -1) {
+        if (payload.stock > payload.quantity) {
+          // Verifica o estoque
+          state.itensCarrinho[posicaoProduto] = payload;
+        } else {
+          throw 'Ops, o estoque desse produto esgotou :(';
+        }
+      }
+    },
     removeItemCarrinho: (state, { payload }) => {
       const { id } = payload;
 
@@ -41,8 +55,12 @@ export const carrinhoSlice = createSlice({
   }
 });
 
-export const { addItemCarrinho, removeItemCarrinho, limparItensCarrinho } =
-  carrinhoSlice.actions;
+export const {
+  addItemCarrinho,
+  removeItemCarrinho,
+  limparItensCarrinho,
+  alteraItemCarrinho
+} = carrinhoSlice.actions;
 export const getItensCarrinho = (state: {
   itensCarrinho: { itensCarrinho: any };
 }) => state.itensCarrinho.itensCarrinho;
