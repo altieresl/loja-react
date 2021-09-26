@@ -3,7 +3,6 @@ import { Produto } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import {
-  addItemCarrinho,
   removeItemCarrinho,
   alteraItemCarrinho
 } from '../../redux/carrinho/carrinhoSlice';
@@ -58,24 +57,14 @@ export const ItemCarrinho = (props: any) => {
           <span>$ {produto.price}</span>
         </div>
       </div>
-      <div className="rows quantidades">
-        <div className="def-number-input number-input">
-          <button
-            className="minus"
-            onClick={() => alteracaoInput(+quantidade - 1)}
-          ></button>
-          <input
-            className="quantity"
-            name="quantity"
-            onChange={(event) => alteracaoInput(parseInt(event.target.value))}
-            type="number"
-            value={quantidade}
-          />
-          <button
-            className="plus"
-            onClick={() => alteracaoInput(+quantidade + 1)}
-          ></button>
-        </div>
+      <div className="rows quantidades alignCenter">
+        <input
+          className="form-control quantidade"
+          name="quantidade"
+          onChange={(event) => alteracaoInput(parseInt(event.target.value))}
+          type="number"
+          value={quantidade}
+        />
         <button className="btn btn-sm" onClick={() => alterarQuantidade()}>
           Alterar quantidade
         </button>

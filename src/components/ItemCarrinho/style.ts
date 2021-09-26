@@ -6,72 +6,22 @@ export const Produto = styled.div`
   flex-direction: column;
   margin-bottom: 0.5em;
 
+  .rows.quantidades {
+    @media (max-width: 600px) {
+      font-size: 12px;
+    }
+  }
+  .rows.quantidades .btn.btn-sm {
+    @media (max-width: 600px) {
+      padding: 0.6rem 0.6rem;
+    }
+  }
   .rows.quantidades button:last-child {
     margin-left: auto;
   }
-  .number-input input[type='number'] {
-    -webkit-appearance: textfield;
-    -moz-appearance: textfield;
-    appearance: textfield;
-  }
-  .number-input input[type='number']::-webkit-inner-spin-button,
-  .number-input input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-  }
-  .number-input {
-    // margin-bottom: 3rem;
-  }
-  .number-input button {
-    -webkit-appearance: none;
-    background-color: transparent;
-    border: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    margin: 0;
-    position: relative;
-  }
-  .number-input button:before,
-  .number-input button:after {
-    display: inline-block;
-    position: absolute;
-    content: '';
-    height: 2px;
-    transform: translate(-50%, -50%);
-  }
-  .number-input button.plus:after {
-    transform: translate(-50%, -50%) rotate(90deg);
-  }
-  .number-input input[type='number'] {
+  .form-control.quantidade {
+    width: 4em;
     text-align: center;
-  }
-  .number-input.number-input {
-    border: 1px solid #ced4da;
-    width: 10rem;
-    border-radius: 0.25rem;
-  }
-  .number-input.number-input button {
-    width: 2.6rem;
-    height: 0.7rem;
-    height: 100%;
-  }
-  .number-input.number-input button.minus {
-    padding-left: 10px;
-    height: 100%;
-  }
-  .number-input.number-input button:before,
-  .number-input.number-input button:after {
-    width: 0.7rem;
-    background-color: #495057;
-  }
-  .number-input.number-input input[type='number'] {
-    max-width: 4rem;
-    padding: 0.5rem;
-    border: 1px solid #ced4da;
-    border-width: 0 1px;
-    font-size: 1rem;
-    height: 2.5rem;
-    color: #495057;
   }
 
   img {
