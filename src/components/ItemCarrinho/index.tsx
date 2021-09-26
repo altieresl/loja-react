@@ -36,7 +36,12 @@ export const ItemCarrinho = (props: any) => {
     }
   };
   const removerProduto = () => {
-    dispatch(removeItemCarrinho(produto));
+    try {
+      dispatch(removeItemCarrinho(produto));
+      toast.success('Produto removido com sucesso!');
+    } catch (error) {
+      if (typeof error === 'string') toast.error(error);
+    }
   };
 
   const alteracaoInput = (quantidade: number) => {
