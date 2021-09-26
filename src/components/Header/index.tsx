@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from './style';
 import { useSelector } from 'react-redux';
@@ -8,6 +8,16 @@ export const Header = () => {
   const itensCarrinho = useSelector(
     (state: RootState) => state.carrinho.itensCarrinho
   );
+  const [quantidadeItensCarrinho, setQuantidadeItensCarrinho] = useState(0);
+
+  useEffect(() => {
+    let quantidade = 0;
+    itensCarrinho.forEach((item) => {
+      quantidade += item.quantity;
+    });
+    setQuantidadeItensCarrinho(quantidade);
+  }, [itensCarrinho]);
+
   return (
     <Menu>
       <h1>Loja</h1>
@@ -18,7 +28,7 @@ export const Header = () => {
           </li>
           <li className="carrinho">
             <Link to="/" className="btn btn-sm">
-              <span>{itensCarrinho.length || 0}</span> Carrinho
+              <span>{quantidadeItensCarrinho || 0}</span> Carrinho
             </Link>
           </li>
         </ul>
