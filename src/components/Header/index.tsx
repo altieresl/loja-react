@@ -13,7 +13,7 @@ export const Header = () => {
   useEffect(() => {
     let quantidade = 0;
     itensCarrinho.forEach((item) => {
-      quantidade += item.quantity;
+      quantidade += parseInt(item.quantity);
     });
     setQuantidadeItensCarrinho(quantidade);
   }, [itensCarrinho]);
@@ -27,7 +27,7 @@ export const Header = () => {
             <Link to="/">Home</Link>
           </li>
           <li className="carrinho">
-            <Link to="/" className="btn btn-sm">
+            <Link to="/carrinho" className="btn btn-sm">
               <span>{quantidadeItensCarrinho || 0}</span> Carrinho
             </Link>
           </li>

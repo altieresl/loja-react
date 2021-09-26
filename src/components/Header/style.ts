@@ -33,7 +33,7 @@ export const Menu = styled.div`
     background-color: rgb(255, 101, 0);
   }
   nav ul li.carrinho a:hover {
-    color: #D3D3D3;
+    color: #d3d3d3;
   }
   nav ul li.carrinho span {
     background-color: #2d2256;
